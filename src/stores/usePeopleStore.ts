@@ -16,10 +16,6 @@ const usePeopleStore = create<PeopleQueue>((set) => ({
         return { peopleQueue: updatedQueue };
      }),
     decreasePeopleQueue: () => set((state) => {
-        if (state.peopleQueue < 1) {
-            alert("Not enough people in the queue.");
-            return { peopleQueue: state.peopleQueue };
-        };
         const updatedQueue = state.peopleQueue - 1;
         updatePeopleQueueInLocalStorage(updatedQueue);
         return { peopleQueue: updatedQueue };

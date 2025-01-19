@@ -14,7 +14,7 @@ const useTaxiStore = create<TaxiQueue>((set) => ({
         updateTaxiQueueInLocalStorage(updatedQueue);
         return { taxiQueue: updatedQueue };
      }),
-    taxiDeparture: () => set((state) => { 
+    taxiDeparture: () => set((state) => {
         const updatedQueue = state.taxiQueue - 1;
         updateTaxiQueueInLocalStorage(updatedQueue);
         return { taxiQueue: updatedQueue };

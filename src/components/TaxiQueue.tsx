@@ -6,11 +6,17 @@ const TaxiQueue = () => {
   const { peopleQueue, decreaseWhenTaxiDepart } = usePeopleStore();
   
   const handleTaxiDeparture = () => {
+    if (taxiQueue < 1) {
+      alert("Not enough taxis to depart!");
+      return;
+    };
+
     if (taxiQueue >= 1 && peopleQueue >= 12) {
       taxiDeparture();
       decreaseWhenTaxiDepart();
     } else {
-      alert("Not enough people to depart!");
+      alert("Not enough people in the queue to depart!");
+      return;
     }
   }
 
