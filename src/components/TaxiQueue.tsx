@@ -1,35 +1,30 @@
 import useTaxiStore from "../stores/useTaxiStore";
-import usePeopleStore from "../stores/usePeopleStore";
 import { Card, Button, Stack } from 'react-bootstrap';
 
 const TaxiQueue = () => {
-  const { taxiQueue, increaseTaxiQueue, taxiDeparture } = useTaxiStore();
-  const { peopleQueue, decreaseWhenTaxiDepart } = usePeopleStore();
-  
-  const handleTaxiDeparture = () => {
+  const { taxiQueue, increaseTaxiQueue, decreaseTaxiQueue } = useTaxiStore();
+
+  const handleTaxiLeavingQueue = () => {
     if (taxiQueue < 1) {
-      alert("Not enough taxis to depart!");
+      alert("Not enough taxis in the queue.");
       return;
     }
-    if (taxiQueue >= 1 && peopleQueue >= 12) {
-      taxiDeparture();
-      decreaseWhenTaxiDepart();
-    } else {
-      alert("Not enough people in the queue to depart!");
-      return;
+    if (taxiQueue >= 1) {
+      decreaseTaxiQueue();
     }
   }
 
   return (
     <Card className="h-100">
       <Card.Body>
-        <Card.Title as="h1" className="mb-4">Taxi Queue: {taxiQueue}</Card.Title>
+        <Card.Title as="h1" className="mb-4 fs-2">Taxi queue: {taxiQueue}</Card.Title>
         <Stack direction="horizontal" gap={3}>
           <Button variant="warning" onClick={increaseTaxiQueue}>
-            Join Queue
+            Join queue
           </Button>
-          <Button variant="success" onClick={handleTaxiDeparture}>
-            Depart
+
+          <Button variant="danger" onClick={handleTaxiLeavingQueue}>
+            Leave queue
           </Button>
         </Stack>
       </Card.Body>

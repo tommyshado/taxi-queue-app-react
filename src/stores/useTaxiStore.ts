@@ -5,16 +5,22 @@ interface TaxiQueue {
     taxiQueue: number;
     increaseTaxiQueue: () => void;
     taxiDeparture: () => void;
+    decreaseTaxiQueue: () => void;
 }
 
 const useTaxiStore = create<TaxiQueue>((set) => ({
     taxiQueue: fetchTaxiQueueFromLocalStorage(),
-    increaseTaxiQueue: () => set((state) => { 
+    increaseTaxiQueue: () => set((state) => {
         const updatedQueue = state.taxiQueue + 1;
         updateTaxiQueueInLocalStorage(updatedQueue);
         return { taxiQueue: updatedQueue };
-     }),
+    }),
     taxiDeparture: () => set((state) => {
+        const updatedQueue = state.taxiQueue - 1;
+        updateTaxiQueueInLocalStorage(updatedQueue);
+        return { taxiQueue: updatedQueue };
+    }),
+    decreaseTaxiQueue: () => set((state) => {
         const updatedQueue = state.taxiQueue - 1;
         updateTaxiQueueInLocalStorage(updatedQueue);
         return { taxiQueue: updatedQueue };

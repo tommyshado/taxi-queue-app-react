@@ -15,13 +15,13 @@ const PeopleQueue = () => {
   return (
     <Card className="h-100">
       <Card.Body>
-        <Card.Title as="h1" className="mb-4">People Queue: {peopleQueue}</Card.Title>
+        <Card.Title as="h1" className="mb-4 fs-2">People queue: {peopleQueue}</Card.Title>
         <Stack direction="horizontal" gap={3}>
           <Button variant="primary" onClick={increasePeopleQueue}>
-            Join Queue
+            Join queue
           </Button>
           <Button variant="danger" onClick={handlePeopleLeavingQueue}>
-            Leave Queue
+            Leave queue
           </Button>
         </Stack>
       </Card.Body>
