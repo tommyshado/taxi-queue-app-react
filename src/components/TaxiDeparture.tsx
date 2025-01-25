@@ -3,8 +3,8 @@ import usePeopleStore from "../stores/usePeopleStore";
 import { Card, Button, Stack } from "react-bootstrap";
 
 const TaxiDeparture = () => {
-  const { taxiQueue, taxiDeparture } = useTaxiStore();
-  const { peopleQueue, decreaseWhenTaxiDepart } = usePeopleStore();
+  const { queue: taxiQueue, taxiDeparture } = useTaxiStore();
+  const { queue: peopleQueue, decreaseWhenTaxiDepart } = usePeopleStore();
 
   const handleTaxiDeparture = () => {
     if (taxiQueue < 1) {

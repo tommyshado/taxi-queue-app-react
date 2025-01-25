@@ -1,29 +1,27 @@
 import { create } from "zustand";
 import { fetchTaxiQueueFromLocalStorage, updateTaxiQueueInLocalStorage } from "../utils/taxiQueueLocalStorage";
+import { Queue } from "../types/Queue";
 
-interface TaxiQueue {
-    taxiQueue: number;
-    increaseTaxiQueue: () => void;
+interface TaxiQueue extends Queue {
     taxiDeparture: () => void;
-    decreaseTaxiQueue: () => void;
 }
 
 const useTaxiStore = create<TaxiQueue>((set) => ({
-    taxiQueue: fetchTaxiQueueFromLocalStorage(),
-    increaseTaxiQueue: () => set((state) => {
-        const updatedQueue = state.taxiQueue + 1;
+    queue: fetchTaxiQueueFromLocalStorage(),
+    incrementQueue: () => set((state) => {
+        const updatedQueue = state.queue + 1;
         updateTaxiQueueInLocalStorage(updatedQueue);
-        return { taxiQueue: updatedQueue };
+        return { queue: updatedQueue };
     }),
     taxiDeparture: () => set((state) => {
-        const updatedQueue = state.taxiQueue - 1;
+        const updatedQueue = state.queue - 1;
         updateTaxiQueueInLocalStorage(updatedQueue);
-        return { taxiQueue: updatedQueue };
+        return { queue: updatedQueue };
     }),
-    decreaseTaxiQueue: () => set((state) => {
-        const updatedQueue = state.taxiQueue - 1;
+    decrementQueue: () => set((state) => {
+        const updatedQueue = state.queue - 1;
         updateTaxiQueueInLocalStorage(updatedQueue);
-        return { taxiQueue: updatedQueue };
+        return { queue: updatedQueue };
     }),
 }));
 

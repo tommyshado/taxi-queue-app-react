@@ -2,24 +2,24 @@ import useTaxiStore from "../stores/useTaxiStore";
 import { Card, Button, Stack } from 'react-bootstrap';
 
 const TaxiQueue = () => {
-  const { taxiQueue, increaseTaxiQueue, decreaseTaxiQueue } = useTaxiStore();
+  const { queue, incrementQueue, decrementQueue } = useTaxiStore();
 
   const handleTaxiLeavingQueue = () => {
-    if (taxiQueue < 1) {
+    if (queue < 1) {
       alert("Not enough taxis in the queue.");
       return;
     }
-    if (taxiQueue >= 1) {
-      decreaseTaxiQueue();
+    if (queue >= 1) {
+      decrementQueue();
     }
   }
 
   return (
     <Card className="h-100">
       <Card.Body>
-        <Card.Title as="h1" className="mb-4 fs-2">Taxi queue: {taxiQueue}</Card.Title>
+        <Card.Title as="h1" className="mb-4 fs-2">Taxi queue: {queue}</Card.Title>
         <Stack direction="horizontal" gap={3}>
-          <Button variant="warning" onClick={increaseTaxiQueue}>
+          <Button variant="warning" onClick={incrementQueue}>
             Join queue
           </Button>
 
